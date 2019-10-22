@@ -1,9 +1,12 @@
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -12,7 +15,15 @@ import javax.swing.JPanel;
 
 public class HaksaFs extends JPanel {
 	
-	
+//	ImageIcon img;
+//	public void paintComponent(Graphics g) {
+//		Dimension d = getSize();
+//		g.drawImage(img.getImage(), 0, 0, d.width, d.height, null);
+//		setOpaque(false);
+//		super.paintComponent(g);
+//	}
+//	
+//	
 	
 	public HaksaFs() {
 //		setTitle("ÇÐ»ý¿ë");
@@ -92,10 +103,10 @@ public class HaksaFs extends JPanel {
 				Login.bg.removeAll();
 				Login.bg.revalidate();
 				Login.bg.repaint();
-				Login.bg.add(new BookGraph2());
+				Login.bg.add(new Login().fr);
 				Login.bg.setLayout(null);
-				Login.fr.setPreferredSize(new Dimension(620,500));
-				Login.fr.pack();
+				Login.fr.setPreferredSize(new Dimension(500,500));
+				//Login.fr.pack();
 				//Login.fr.setLayout(new BorderLayout());
 				break;
 			}

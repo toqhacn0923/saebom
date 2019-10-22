@@ -62,10 +62,11 @@ public class Haksa extends JPanel{
 //			}
 //		});
 //		add(panel);
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation((screenSize.width-Login.fr.getPreferredSize().width)/2,(screenSize.height-Login.fr.getPreferredSize().height)/2);
-		Login.fr.pack();
-		Login.fr.setResizable(false);
+//		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//		setLocation((screenSize.width-Login.fr.getPreferredSize().width)/2,(screenSize.height-Login.fr.getPreferredSize().height)/2);
+//		Login.fr.pack();
+//		Login.fr.setResizable(false);
+		setSize(500,500);
 		setVisible(true);
 	}
 
