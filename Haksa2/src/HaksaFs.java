@@ -103,7 +103,7 @@ public class HaksaFs extends JPanel {
 				Login.bg.removeAll();
 				Login.bg.revalidate();
 				Login.bg.repaint();
-				Login.bg.add(new Login().fr);
+				Login.bg.add(new Login());
 				Login.bg.setLayout(null);
 				Login.fr.setPreferredSize(new Dimension(500,500));
 				//Login.fr.pack();
