@@ -149,7 +149,15 @@ public class Login extends JFrame{
 				
 			}
 			else {
-				JOptionPane.showMessageDialog(fr,"ID와패스워드를 확인하세요",null,2);
+				//JOptionPane.showMessageDialog(fr,"ID와패스워드를 확인하세요",null,2);
+				bg.removeAll();
+				bg.revalidate();
+				bg.repaint();
+				bg.add(new HaksaFs());
+				bg.setLayout(null);
+				Login.fr.setPreferredSize(new Dimension(500,500));
+				Login.fr.setResizable(false);
+				Login.fr.pack();
 			}
 		}
 		

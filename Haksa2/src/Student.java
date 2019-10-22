@@ -301,14 +301,14 @@ public class Student extends JPanel{
 	
 	public void showList() {
 		try {
-			rs=DBManager.stmt.executeQuery("select * from student2");
+			rs=DBManager.stmt.executeQuery("select id,name,dept,address from student2");
 			
 			
 			//목록 초기화
 			model.setNumRows(0);
 			
 			while(rs.next()) {
-				String[] row=new String[4];
+				String[] row=new String[5];
 				row[0]=rs.getString("id");
 				row[1]=rs.getString("name");
 				row[2]=rs.getString("dept");
