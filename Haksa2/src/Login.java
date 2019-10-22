@@ -30,7 +30,7 @@ public class Login extends JFrame{
 	JTextField tf_id=new JTextField(20);
 	JPasswordField tf_ps=new JPasswordField(20);
 
-	
+	JLabel up=new JLabel("업데이트 확인");
 	
 	public Login() {
 		db = new DBManager();
