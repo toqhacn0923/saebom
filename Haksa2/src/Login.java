@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,7 +31,8 @@ public class Login extends JFrame{
 	
 	JTextField tf_id=new JTextField(20);
 	JPasswordField tf_ps=new JPasswordField(20);
-
+	ResultSet rs=null;
+	
 	
 	public Login() {
 		db = new DBManager();
@@ -93,6 +96,7 @@ public class Login extends JFrame{
 		
 		ma m1=new ma();
 		btn_login.addActionListener(m1);
+		btn_join.addActionListener(m1);
 		bg.add(btn_login);
 		
 		
@@ -126,42 +130,57 @@ public class Login extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String s_ps=new String(tf_ps.getPassword());
-			if(tf_id.getText().equals("admin")&&s_ps.equals("1234")) {
-//				bg=new JPanel(null) {
-//					public void paintComponent(Graphics g) {
-//						Dimension d = getSize();
-//						//g.drawImage(null, 0, 0, d.width, d.height, null);
-//						setOpaque(false);
-//						super.paintComponent(g);
-//						
-//					}
-//				};
-//				fr.add(bg);
-				bg.removeAll();
-				bg.revalidate();
-				bg.repaint();
-				bg.add(new Haksa());
-				bg.setLayout(null);
-				Login.fr.setPreferredSize(new Dimension(500,500));
-				Login.fr.setResizable(false);
-				Login.fr.pack();
-				JOptionPane.showMessageDialog(fr, "관리자로 로그인되었습니다.");
-				
-			}
-			else {
-				//JOptionPane.showMessageDialog(fr,"ID와패스워드를 확인하세요",null,2);
-				bg.removeAll();
-				bg.revalidate();
-				bg.repaint();
-				bg.add(new HaksaFs());
-				bg.setLayout(null);
-				Login.fr.setPreferredSize(new Dimension(500,500));
-				Login.fr.setResizable(false);
-				Login.fr.pack();
+			String cmd = e.getActionCommand();
+			switch(cmd) {
+			case "로그인":
+				if(tf_id.getText().equals("admin")&&s_ps.equals("1234")) {				
+					bg.removeAll();
+					bg.revalidate();
+					bg.repaint();
+					bg.add(new Haksa());
+					bg.setLayout(null);
+					Login.fr.setPreferredSize(new Dimension(500,500));
+					Login.fr.setResizable(false);
+					Login.fr.pack();
+					JOptionPane.showMessageDialog(fr, "관리자로 로그인되었습니다.");
+
+				}
+				else {
+					try {
+						rs=DBManager.stmt.executeQuery("select id,bir from student2 where id='"+tf_id.getText()+"'");
+						rs.next();
+						if(tf_id.getText().equals(rs.getString("id"))&&s_ps.equals(rs.getString("bir"))) {
+
+							bg.removeAll();
+							bg.revalidate();
+							bg.repaint();
+							bg.add(new HaksaFs());
+							bg.setLayout(null);
+							Login.fr.setPreferredSize(new Dimension(500,500));
+							Login.fr.setResizable(false);
+							Login.fr.pack();
+							JOptionPane.showMessageDialog(fr,"학생으로 로그인 되었습니다.");
+
+						}
+						else {
+							JOptionPane.showMessageDialog(fr,"id와password를 확인해주세요.");
+						}
+						rs.close();
+					}catch (SQLException e1) {
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(fr,"id와password를 확인해주세요.");
+					}
+				}
+				break;
+			case "회원가입":
+				System.out.println("회원가입");
+				JOptionPane.showMessageDialog(fr,"회원가입 문의는 과사무실로 문의 부탁드립니다.");
+				break;
 			}
 		}
-		
 	}
+
+
 	
 
 
