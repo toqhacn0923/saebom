@@ -26,7 +26,7 @@ public class BookRent extends JPanel{
 	
 	public BookRent() {
 		
-		
+	
 
 	sql="select a.id, a.name, b.title, c.rdate" + 
 			" from student2 a, books b, bookrent c" + 

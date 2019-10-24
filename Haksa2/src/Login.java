@@ -1,12 +1,15 @@
 import java.awt.Container;
+import java.awt.Desktop;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -29,7 +32,7 @@ public class Login extends JFrame{
 	DBManager db = null;
 	static JFrame fr=new JFrame();
 	
-	JTextField tf_id=new JTextField(20);
+	static JTextField tf_id=new JTextField(20);
 	JPasswordField tf_ps=new JPasswordField(20);
 	ResultSet rs=null;
 	
@@ -150,7 +153,7 @@ public class Login extends JFrame{
 						rs=DBManager.stmt.executeQuery("select id,bir from student2 where id='"+tf_id.getText()+"'");
 						rs.next();
 						if(tf_id.getText().equals(rs.getString("id"))&&s_ps.equals(rs.getString("bir"))) {
-
+							
 							bg.removeAll();
 							bg.revalidate();
 							bg.repaint();
@@ -174,13 +177,22 @@ public class Login extends JFrame{
 				break;
 			case "회원가입":
 				System.out.println("회원가입");
-				JOptionPane.showMessageDialog(fr,"회원가입 문의는 과사무실로 문의 부탁드립니다.");
+				//JOptionPane.showMessageDialog(fr,"회원가입 문의는 과사무실로 문의 부탁드립니다.");
+				try {
+					  Desktop desktop = java.awt.Desktop.getDesktop();
+					  URI oURL = new URI("http://saebom.dothome.co.kr/");
+					  desktop.browse(oURL);
+					} catch (Exception e1) {
+					  e1.printStackTrace();
+					}
 				break;
 			}
 		}
 	}
 
 
+	
+	
 	
 
 

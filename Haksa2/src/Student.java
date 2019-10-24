@@ -26,6 +26,7 @@ public class Student extends JPanel{
 	JTextField tf_dept=new JTextField(20);
 	JTextField tf_adr=new JTextField(20);
 	JTextField tf_bir=new JTextField(20);
+	JTextField tf_year=new JTextField(20);
 	
 	DefaultTableModel model=null;
 	JTable table=null;
@@ -64,18 +65,20 @@ public class Student extends JPanel{
 					model.setNumRows(0);
 					
 					while(rs.next()) {
-						String[] row=new String[5];
+						String[] row=new String[6];
 						row[0]=rs.getString("id");
 						row[1]=rs.getString("name");
 						row[2]=rs.getString("dept");
 						row[3]=rs.getString("address");
 						row[4]=rs.getString("bir");
+						row[5]=rs.getString("year");
 						model.addRow(row);
 						
 						tf_name.setText(rs.getString("name"));
 						tf_dept.setText(rs.getString("dept"));
 						tf_adr.setText(rs.getString("address"));
 						tf_bir.setText(rs.getString("bir"));
+						tf_year.setText(rs.getString("year"));
 						
 					}
 					
@@ -131,6 +134,14 @@ public class Student extends JPanel{
 		tf_bir.setSize(200,25);
 		add(tf_bir);
 		
+		JLabel la_year=new JLabel("학년");
+		la_year.setSize(new Dimension(30,30));
+		la_year.setLocation(10,10+(5*30));
+		add(la_year);
+		tf_year.setLocation(45,12+(5*30));
+		tf_year.setSize(200,25);
+		add(tf_year);
+		
 		
 		
 		
@@ -141,17 +152,19 @@ public class Student extends JPanel{
 		DefaultTableCellRenderer celAlignRight = new DefaultTableCellRenderer();
 		celAlignRight.setHorizontalAlignment(JLabel.RIGHT);
 		
-		String colName[]={"학번","이름","학과","주소","생일"};  //표에출력할 컬럼명
+		String colName[]={"학번","이름","학과","주소","생일","학년"};  //표에출력할 컬럼명
 		model=new DefaultTableModel(colName,0); //표의 데이터
 		table = new JTable(model);  //테이블에 모델(데이터 ) 바인딩
 		table.getColumnModel().getColumn(0).setPreferredWidth(70);
 		table.getColumnModel().getColumn(1).setPreferredWidth(70);
-		table.getColumnModel().getColumn(2).setPreferredWidth(70);
+		table.getColumnModel().getColumn(2).setPreferredWidth(100);
 		table.getColumnModel().getColumn(3).setPreferredWidth(200);
+		table.getColumnModel().getColumn(4).setPreferredWidth(70);
+		table.getColumnModel().getColumn(5).setPreferredWidth(70);
 		//table.setPreferredScrollableViewportSize(new Dimension(250,270)); //사이즈
 		JScrollPane jp = new JScrollPane(table);
-		jp.setSize(new Dimension(380,210));
-		jp.setLocation(10, 170);
+		jp.setSize(new Dimension(380,190));
+		jp.setLocation(10, 200);
 		add(jp);
 		
 		table.addMouseListener(new MouseListener() {
@@ -165,11 +178,12 @@ public class Student extends JPanel{
 				String dept=(String)model.getValueAt(table.getSelectedRow(), 2);//dept
 				String address=(String)model.getValueAt(table.getSelectedRow(), 3);//address
 				String bir=(String)model.getValueAt(table.getSelectedRow(), 4);//bir
-				
+				String year=(String)model.getValueAt(table.getSelectedRow(), 5);//year
 				tf_id.setText(id);
 				tf_name.setText(name);
 				tf_dept.setText(dept);
 				tf_adr.setText(address);
+				tf_year.setText(year);
 			}
 
 			@Override
@@ -214,7 +228,7 @@ public class Student extends JPanel{
 				Statement stmt = null;
 				try {
 	
-					DBManager.stmt.executeUpdate("update student2 set name='"+tf_name.getText()+"',dept='"+tf_dept.getText()+"',address='"+tf_adr.getText()+"' where id='"+tf_id.getText()+"'");
+					DBManager.stmt.executeUpdate("update student2 set name='"+tf_name.getText()+"',dept='"+tf_dept.getText()+"',address='"+tf_adr.getText()+"',bir='"+tf_bir.getText()+"',year='"+tf_year.getText()+"' where id='"+tf_id.getText()+"'");
 					JOptionPane.showMessageDialog(null, "수정되었습니다.");
 					
 					showList();
@@ -300,7 +314,7 @@ public class Student extends JPanel{
 			
 			try {
 				
-				DBManager.stmt.executeUpdate("insert into student2(id,name,dept,address,bir) values('"+tf_id.getText()+"','"+tf_name.getText()+"','"+tf_dept.getText()+"','"+tf_adr.getText()+"','"+tf_bir.getText()+"')");
+				DBManager.stmt.executeUpdate("insert into student2(id,name,dept,address,bir,year) values('"+tf_id.getText()+"','"+tf_name.getText()+"','"+tf_dept.getText()+"','"+tf_adr.getText()+"','"+tf_bir.getText()+"','"+tf_year.getText()+"')");
 				
 				JOptionPane.showMessageDialog(null, "등록되었습니다.");
 				
@@ -321,12 +335,13 @@ public class Student extends JPanel{
 			model.setNumRows(0);
 			
 			while(rs.next()) {
-				String[] row=new String[5];
+				String[] row=new String[6];
 				row[0]=rs.getString("id");
 				row[1]=rs.getString("name");
 				row[2]=rs.getString("dept");
 				row[3]=rs.getString("address");
 				row[4]=rs.getString("bir");
+				row[5]=rs.getString("year");
 				model.addRow(row);
 				
 				tf_id.setText("");
@@ -334,6 +349,7 @@ public class Student extends JPanel{
 				tf_dept.setText("");
 				tf_adr.setText("");
 				tf_bir.setText("");
+				tf_year.setText("");
 				
 			}
 		
