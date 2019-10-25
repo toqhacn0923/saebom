@@ -183,6 +183,7 @@ public class Student extends JPanel{
 				tf_name.setText(name);
 				tf_dept.setText(dept);
 				tf_adr.setText(address);
+				tf_bir.setText(bir);
 				tf_year.setText(year);
 			}
 

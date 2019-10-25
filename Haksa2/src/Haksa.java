@@ -33,10 +33,13 @@ public class Haksa extends JPanel{
 		JMenu Menu1 = new JMenu("학생관리");
 		JMenu Menu2 = new JMenu("도서관리");
 		JMenuItem itemLoad = new JMenuItem("학생정보");
+		JMenuItem item1 = new JMenuItem("학점관리");
 		JMenuItem itemExit = new JMenuItem("Exit");
 		JMenuItem item2 = new JMenuItem("대출목록");
 		JMenuItem item3 = new JMenuItem("대출현황");
 		Menu1.add(itemLoad);
+		//Menu1.addSeparator();
+		Menu1.add(item1);
 		Menu1.addSeparator();
 		Menu1.add(itemExit);
 		Menu2.add(item2);
@@ -47,6 +50,7 @@ public class Haksa extends JPanel{
 		
 		itemLoad.addActionListener(listener);
 		itemExit.addActionListener(listener);
+		item1.addActionListener(listener);
 		item2.addActionListener(listener);
 		item3.addActionListener(listener);
 		
@@ -108,6 +112,16 @@ public class Haksa extends JPanel{
 				Login.fr.setPreferredSize(new Dimension(620,500));
 				Login.fr.pack();
 				//Login.fr.setLayout(new BorderLayout());
+				break;
+			case "학점관리":
+				System.out.println("학점관리");
+				Login.bg.removeAll();
+				Login.bg.revalidate();
+				Login.bg.repaint();
+				Login.bg.add(new Grade());
+				Login.bg.setLayout(null);
+				Login.fr.setPreferredSize(new Dimension(500,500));
+				Login.fr.pack();
 				break;
 			}
 		}
