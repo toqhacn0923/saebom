@@ -30,29 +30,39 @@ public class Haksa extends JPanel{
 //		panel = new JPanel();
 		JMenuBar mb = new JMenuBar();
 		
-		JMenu Menu1 = new JMenu("학생관리");
-		JMenu Menu2 = new JMenu("도서관리");
-		JMenuItem itemLoad = new JMenuItem("학생정보");
-		JMenuItem item1 = new JMenuItem("학점관리");
-		JMenuItem itemExit = new JMenuItem("Exit");
-		JMenuItem item2 = new JMenuItem("대출목록");
-		JMenuItem item3 = new JMenuItem("대출현황");
-		Menu1.add(itemLoad);
-		//Menu1.addSeparator();
-		Menu1.add(item1);
-		Menu1.addSeparator();
-		Menu1.add(itemExit);
-		Menu2.add(item2);
-		Menu2.add(item3);
+		JMenu Menu1 = new JMenu("메뉴");
+		JMenu Menu2 = new JMenu("학생관리");
+		JMenu Menu3 = new JMenu("도서관리");
+		
+		JMenuItem item1_1 = new JMenuItem("로그아웃");
+		JMenuItem item1_2 = new JMenuItem("Exit");
+		JMenuItem item2_1 = new JMenuItem("학생정보");
+		JMenuItem item2_2 = new JMenuItem("학점관리");
+		JMenuItem item3_1 = new JMenuItem("대출목록");
+		JMenuItem item3_2 = new JMenuItem("대출현황");
+		
+		Menu1.add(item1_1);
+//		Menu1.addSeparator();
+		Menu1.add(item1_2);
+		
+		Menu2.add(item2_1);
+//		Menu2.addSeparator();
+		Menu2.add(item2_2);
+		
+		Menu3.add(item3_1);
+//		Menu3.addSeparator();
+		Menu3.add(item3_2);
 		mb.add(Menu1);
 		mb.add(Menu2);
+		mb.add(Menu3);
 		HaksaMenuActionListener listener = new HaksaMenuActionListener();
 		
-		itemLoad.addActionListener(listener);
-		itemExit.addActionListener(listener);
-		item1.addActionListener(listener);
-		item2.addActionListener(listener);
-		item3.addActionListener(listener);
+		item1_1.addActionListener(listener);
+		item1_2.addActionListener(listener);
+		item2_1.addActionListener(listener);
+		item2_2.addActionListener(listener);
+		item3_1.addActionListener(listener);
+		item3_2.addActionListener(listener);
 		
 		Login.fr.setJMenuBar(mb);
 //		this.addWindowListener(new WindowAdapter() {
@@ -90,9 +100,18 @@ public class Haksa extends JPanel{
 				Login.fr.setResizable(false);
 				Login.fr.pack();
 				break;
+			case "로그아웃":
+				Login.bg.removeAll();
+				Login.bg.revalidate();
+				Login.bg.repaint();
+				Login.bg.add(new Login().bg);
+				Login.bg.setLayout(null);
+				Login.fr.setPreferredSize(new Dimension(500,500));
+				//Login.fr.pack();
+				//Login.fr.setLayout(new BorderLayout());
+				break;
 			case "Exit":
 				System.exit(0);
-				break;
 			case "대출목록":
 				Login.bg.removeAll();
 				Login.bg.revalidate();

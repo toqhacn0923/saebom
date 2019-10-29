@@ -30,7 +30,6 @@ public class Student extends JPanel{
 	
 	DefaultTableModel model=null;
 	JTable table=null;
-	//Connection conn=null;
 	ResultSet rs=null;
 	
 	public Student() {

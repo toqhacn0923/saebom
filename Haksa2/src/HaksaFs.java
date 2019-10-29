@@ -40,9 +40,9 @@ public class HaksaFs extends JPanel {
 		JMenuItem itemLoad = new JMenuItem("로그아웃");
 		JMenuItem itemExit = new JMenuItem("Exit");
 		JMenuItem item2 = new JMenuItem("내정보");
-		JMenuItem item3 = new JMenuItem("학생정보");
+		JMenuItem item3 = new JMenuItem("도서정보");
 		Menu1.add(itemLoad);
-		Menu1.addSeparator();
+		//Menu1.addSeparator();
 		Menu1.add(itemExit);
 		Menu2.add(item2);
 		Menu2.add(item3);
@@ -75,14 +75,14 @@ public class HaksaFs extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			String cmd = e.getActionCommand();
 			switch(cmd) {
-			case "학생정보":
-				System.out.println("학생정보");
+			case "도서정보":
+				System.out.println("도서정보");
 				Login.bg.removeAll();
 				Login.bg.revalidate();
 				Login.bg.repaint();
-				Login.bg.add(new Student());
+				Login.bg.add(new BookFs());
 				Login.bg.setLayout(null);
-				Login.fr.setPreferredSize(new Dimension(500,500));
+				Login.fr.setPreferredSize(new Dimension(450,450));
 				Login.fr.setResizable(false);
 				Login.fr.pack();
 				break;
@@ -103,7 +103,7 @@ public class HaksaFs extends JPanel {
 				Login.bg.removeAll();
 				Login.bg.revalidate();
 				Login.bg.repaint();
-				Login.bg.add(new Login());
+				Login.bg.add(new Login().bg);
 				Login.bg.setLayout(null);
 				Login.fr.setPreferredSize(new Dimension(500,500));
 				//Login.fr.pack();
