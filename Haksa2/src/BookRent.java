@@ -28,7 +28,7 @@ public class BookRent extends JPanel{
 		
 	
 
-	sql="select a.id, a.name, b.title, c.rdate" + 
+	sql="select a.id, a.name, b.title, c.rdate, c.rtdate" + 
 			" from student2 a, books b, bookrent c" + 
 			" where a.id=c.id" + 
 			" and b.bookno=c.bookno";
@@ -39,7 +39,7 @@ public class BookRent extends JPanel{
     l_dept.setBounds(10, 10, 30, 20);
     add(l_dept);
     
-    String colName[]={"학번","이름","도서명","대출일"};
+    String colName[]={"학번","이름","도서명","대출일","반납일"};
     model=new DefaultTableModel(colName,0);
     table = new JTable(model);
     table.setPreferredScrollableViewportSize(new Dimension(470,200));
@@ -62,7 +62,7 @@ public class BookRent extends JPanel{
 			JComboBox cb=(JComboBox)e.getSource();
 			int a=cb.getSelectedIndex();
 			if(a==0) {
-				 sql="select a.id, a.name, b.title, c.rdate" + 
+				 sql="select a.id, a.name, b.title, c.rdate, c.rtdate" + 
 							" from student2 a, books b, bookrent c" + 
 							" where a.id=c.id" + 
 							" and b.bookno=c.bookno";
@@ -71,7 +71,7 @@ public class BookRent extends JPanel{
 			
 			else if(a==1) {
 				System.out.println("컴퓨터시스템");
-				sql="select a.id, a.name, b.title, c.rdate" + 
+				sql="select a.id, a.name, b.title, c.rdate, c.rtdate" + 
 						" from student2 a, books b, bookrent c" + 
 						" where a.id=c.id" + 
 						" and b.bookno=c.bookno"+
@@ -79,7 +79,7 @@ public class BookRent extends JPanel{
 				list();
 			}
 			else if(a==2) {
-				sql="select a.id, a.name, b.title, c.rdate" + 
+				sql="select a.id, a.name, b.title, c.rdate, c.rtdate" + 
 						" from student2 a, books b, bookrent c" + 
 						" where a.id=c.id" + 
 						" and b.bookno=c.bookno"+
@@ -87,7 +87,7 @@ public class BookRent extends JPanel{
 				list();
 			}
 			else if(a==3) {
-				sql="select a.id, a.name, b.title, c.rdate" + 
+				sql="select a.id, a.name, b.title, c.rdate, c.rtdate" + 
 						" from student2 a, books b, bookrent c" + 
 						" where a.id=c.id" + 
 						" and b.bookno=c.bookno"+
@@ -119,11 +119,12 @@ public class BookRent extends JPanel{
 	     model.setNumRows(0);
 	    
 	     while(rs.next()){
-	      String[] row=new String[4];//컬럼의 갯수가 4
+	      String[] row=new String[5];//컬럼의 갯수가 4
 	      row[0]=rs.getString("id");
 	      row[1]=rs.getString("name");
 	      row[2]=rs.getString("title");
 	      row[3]=rs.getString("rdate");
+	      row[4]=rs.getString("rtdate");
 	      model.addRow(row);
 	     }
 	     rs.close();

@@ -17,7 +17,7 @@ public class My_Info extends JPanel{
 	public My_Info() {
 		
 		setLayout(null);
-		Font a=new Font("µ¸¿ò",Font.BOLD,20);
+		Font a=new Font("¸¼Àº°íµñ",Font.BOLD,20);
 		//Border b=LineBorder.createBlackLineBorder();
 		//setBorder();
 		

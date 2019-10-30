@@ -24,23 +24,27 @@ public class BookFs extends JPanel {
 		Font a=new Font("돋움",Font.BOLD,20);
 		
 		try {
-			rs=DBManager.stmt.executeQuery("select name,id,dept,year from student2 where id='"+Login.tf_id.getText()+"'");
+			rs=DBManager.stmt.executeQuery("select name from student2 where id='"+Login.tf_id.getText()+"'");
 			rs.next();
-			JLabel la_Name=new JLabel("이름: ");
+			JLabel la_Name=new JLabel("이름: "+rs.getString("name"));
 			la_Name.setFont(a);
 			la_Name.setSize(130,30);
 			la_Name.setLocation(40,30);
 			//la_Name.setBorder(b);
 			add(la_Name);
-
-			JLabel la_Rbook=new JLabel("현재대출권수: ");
+			
+			rs=DBManager.stmt.executeQuery("select count(id) from bookrent where id='"+Login.tf_id.getText()+"' and rtdate='x'");
+			rs.next();
+			JLabel la_Rbook=new JLabel("현재대출권수: "+rs.getString("count(id)")+"권");
 			la_Rbook.setFont(a);
 			la_Rbook.setSize(200,30);
 			la_Rbook.setLocation(40,80);
 			//la_Name.setBorder(b);
 			add(la_Rbook);
 
-			JLabel la_All_Rbook=new JLabel("총대출권수: ");
+			rs=DBManager.stmt.executeQuery("select count(id) from bookrent where id='"+Login.tf_id.getText()+"'");
+			rs.next();
+			JLabel la_All_Rbook=new JLabel("총대출권수: "+rs.getString("count(id)")+"권");
 			la_All_Rbook.setFont(a);
 			la_All_Rbook.setSize(200,30);
 			la_All_Rbook.setLocation(40,130);
@@ -80,7 +84,7 @@ public class BookFs extends JPanel {
 		DefaultTableCellRenderer celAlignRight = new DefaultTableCellRenderer();
 		celAlignRight.setHorizontalAlignment(JLabel.RIGHT);
 		
-		String colName[]={"학번","대여번호","책번호","책이름","대여일"};  //표에출력할 컬럼명
+		String colName[]={"학번","대여번호","책번호","책이름","대여일","반납일"};  //표에출력할 컬럼명
 		model=new DefaultTableModel(colName,0); //표의 데이터
 		table = new JTable(model);  //테이블에 모델(데이터 ) 바인딩
 		table.getColumnModel().getColumn(0).setPreferredWidth(70);
@@ -88,6 +92,7 @@ public class BookFs extends JPanel {
 		table.getColumnModel().getColumn(2).setPreferredWidth(70);
 		table.getColumnModel().getColumn(3).setPreferredWidth(100);
 		table.getColumnModel().getColumn(4).setPreferredWidth(100);
+		table.getColumnModel().getColumn(5).setPreferredWidth(100);
 		//table.setPreferredScrollableViewportSize(new Dimension(250,270)); //사이즈
 		JScrollPane jp = new JScrollPane(table);
 		jp.setSize(new Dimension(380,190));
@@ -113,7 +118,7 @@ public class BookFs extends JPanel {
 	public void showList() {
 		try {
 			rs=DBManager.stmt.executeQuery(
-					"select a.id, c.no, c.bookno, b.title, c.rDate\r\n" + 
+					"select a.id, c.no, c.bookno, b.title, c.rDate,c.rtdate\r\n" + 
 					"from student2 a, books b, bookrent c\r\n" + 
 					"where a.id=c.id\r\n" + 
 					"and b.bookno=c.bookno\r\n"+
@@ -132,6 +137,7 @@ public class BookFs extends JPanel {
 				row[2]=rs.getString("bookno");
 				row[3]=rs.getString("title");
 				row[4]=rs.getString("rdate");
+				row[5]=rs.getString("rtdate");
 				model.addRow(row);
 
 //				tf_id.setText("");
