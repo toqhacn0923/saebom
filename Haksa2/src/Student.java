@@ -225,7 +225,7 @@ public class Student extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				Statement stmt = null;
+//				Statement stmt = null;
 				try {
 	
 					DBManager.stmt.executeUpdate("update student2 set name='"+tf_name.getText()+"',dept='"+tf_dept.getText()+"',address='"+tf_adr.getText()+"',bir='"+tf_bir.getText()+"',year='"+tf_year.getText()+"' where id='"+tf_id.getText()+"'");

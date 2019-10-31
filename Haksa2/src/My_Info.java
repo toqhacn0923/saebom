@@ -1,19 +1,25 @@
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class My_Info extends JPanel{
 	
 	DBManager db = null;
 	ResultSet rs = null;
-	
+	DefaultTableModel model=null;
+	JTable table=null;
 	public My_Info() {
 		
 		setLayout(null);
@@ -62,8 +68,62 @@ public class My_Info extends JPanel{
 			e.printStackTrace();
 		}	
 		
+		JButton btn_Search=new JButton("성적조회");
+		btn_Search.setSize(100,30);
+		btn_Search.setLocation(320, 280);
+		add(btn_Search);
+		btn_Search.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					rs=DBManager.stmt.executeQuery("select * from grade where id='"+Login.tf_id.getText()+"'");
+					model.setNumRows(0);
+
+					while(rs.next()) {
+						String[] row=new String[5];
+						row[0]=rs.getString("id");
+						row[1]=rs.getString("grade_1");
+						row[2]=rs.getString("grade_2");
+						row[3]=rs.getString("grade_3");
+						row[4]=rs.getString("grade_4");
+						model.addRow(row);
+
+						
+
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		
 		
+		
+		
+		
+		
+		
+		DefaultTableCellRenderer celAlignCenter = new DefaultTableCellRenderer();
+		celAlignCenter.setHorizontalAlignment(JLabel.CENTER);
+		DefaultTableCellRenderer celAlignRight = new DefaultTableCellRenderer();
+		celAlignRight.setHorizontalAlignment(JLabel.RIGHT);
+
+		String colName[]={"학번","1학년평균","2학년평균","3학년평균","4학년평균"};  //표에출력할 컬럼명
+		model=new DefaultTableModel(colName,0); //표의 데이터
+		table = new JTable(model);  //테이블에 모델(데이터 ) 바인딩
+		table.getColumnModel().getColumn(0).setPreferredWidth(70);
+		table.getColumnModel().getColumn(1).setPreferredWidth(70);
+		table.getColumnModel().getColumn(2).setPreferredWidth(70);
+		table.getColumnModel().getColumn(3).setPreferredWidth(70);
+		table.getColumnModel().getColumn(4).setPreferredWidth(70);
+		//table.setPreferredScrollableViewportSize(new Dimension(250,270)); //사이즈
+		JScrollPane jp = new JScrollPane(table);
+		jp.setSize(new Dimension(380,110));
+		jp.setLocation(50, 320);
+		add(jp);
+
 		
 		
 		

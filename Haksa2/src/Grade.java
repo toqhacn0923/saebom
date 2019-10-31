@@ -4,9 +4,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -46,6 +48,7 @@ public class Grade extends JPanel {
 		JButton btnSearch=new JButton("검색");
 		btnSearch.setSize(60,25);
 		btnSearch.setLocation(250,12);
+		btnSearch.addActionListener(btnAction);
 		add(btnSearch);
 		
 //		JLabel la_name=new JLabel("이름");
@@ -112,16 +115,7 @@ public class Grade extends JPanel {
 		btnList.setLocation(100,400);
 		btnList.addActionListener(btnAction);
 		add(btnList);
-//		btnList.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				showList();
-//
-//				
-//			}
-//		});
-		
+
 		
 		
 		
@@ -171,7 +165,6 @@ public class Grade extends JPanel {
 				String grade_3=(String)model.getValueAt(table.getSelectedRow(), 3);//bir
 				String grade_4=(String)model.getValueAt(table.getSelectedRow(), 4);//year
 				tf_id.setText(id);
-				//tf_name.setText(name);
 				tf_grade1.setText(grade_1);
 				tf_grade2.setText(grade_2);
 				tf_grade3.setText(grade_3);
@@ -201,11 +194,56 @@ public class Grade extends JPanel {
 			String cmd = e.getActionCommand();
 			switch(cmd) {
 			case"등록":
-				
+				try {
+					DBManager.stmt.executeUpdate("insert into grade(id,grade_1,grade_2,grade_3,grade_4) values('"+tf_id.getText()+"','"+tf_grade1.getText()+"','"+tf_grade2.getText()+"','"+tf_grade3.getText()+"','"+tf_grade4.getText()+"')");
+					JOptionPane.showMessageDialog(Login.fr, "등록되었습니다.");
+					showList();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				break;
 			case"목록":
 				showList();
 				break;
+			case"수정":
+				try {
+					DBManager.stmt.executeUpdate("update grade set grade_1='"+tf_grade1.getText()+"',grade_2='"+tf_grade2.getText()+"',grade_3='"+tf_grade3.getText()+"',grade_4='"+tf_grade4.getText()+"' where id='"+tf_id.getText()+"'");
+					JOptionPane.showMessageDialog(Login.fr, "수정되었습니다.");
+					showList();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			case"검색":
+				try {
+					rs=DBManager.stmt.executeQuery("select * from grade where id='"+tf_id.getText()+"' order by id");
+
+
+					//목록 초기화
+					model.setNumRows(0);
+
+					while(rs.next()) {
+						String[] row=new String[5];
+						row[0]=rs.getString("id");
+						row[1]=rs.getString("grade_1");
+						row[2]=rs.getString("grade_2");
+						row[3]=rs.getString("grade_3");
+						row[4]=rs.getString("grade_4");
+						model.addRow(row);
+
+						tf_id.setText(rs.getString("id"));
+						tf_grade1.setText(rs.getString("grade_1"));
+						tf_grade2.setText(rs.getString("grade_2"));
+						tf_grade3.setText(rs.getString("grade_3"));
+						tf_grade4.setText(rs.getString("grade_4"));
+
+					}
+
+				}catch(Exception ex) {
+					ex.printStackTrace();
+				}
+				
 			}
 		}
 		

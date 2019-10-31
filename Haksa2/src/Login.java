@@ -44,19 +44,25 @@ public class Login extends JFrame{
 		fr.setTitle("학사관리시스템");
 		fr.setSize(500,500);
 		
+	
 		
 		
 		imgIcon=new ImageIcon("images/bg2.jpg");
-		bg=new JPanel(null) {
+		bg=new JPanel(null); /*{
 			public void paintComponent(Graphics g) {
 				Dimension d = getSize();
 				//g.drawImage(imgIcon.getImage(), 0, 0, d.width, d.height, null);
 				setOpaque(false);
 				super.paintComponent(g);
 			}
-		};
+		};*/
 		
-		main=new JPanel(null);
+		ImageIcon imgIcon2=new ImageIcon("images/logo.jpg");
+		JLabel la_img=new JLabel(imgIcon2);
+		la_img.setLocation(50, 50);
+		la_img.setSize(100,100);
+		bg.add(la_img);
+		//main=new JPanel(null);
 		
 		JLabel la_main=new JLabel("학사관리시스템");
 		la_main.setFont(new Font("Serif",Font.BOLD,25));
