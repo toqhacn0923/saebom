@@ -59,25 +59,25 @@ public class Login extends JFrame{
 		
 		ImageIcon imgIcon2=new ImageIcon("images/logo.jpg");
 		JLabel la_img=new JLabel(imgIcon2);
-		la_img.setLocation(50, 50);
-		la_img.setSize(100,100);
+		la_img.setLocation(140, 30);
+		la_img.setSize(200,200);
 		bg.add(la_img);
 		//main=new JPanel(null);
 		
 		JLabel la_main=new JLabel("학사관리시스템");
 		la_main.setFont(new Font("Serif",Font.BOLD,25));
-		la_main.setLocation(150,200);
+		la_main.setLocation(150,240);
 		la_main.setSize(200,30);
 		bg.add(la_main);
 		
 		JLabel la_id=new JLabel("ID");
 		la_id.setFont(new Font("Serif",Font.BOLD,22));
-		la_id.setLocation(108,250);
+		la_id.setLocation(108,290);
 		la_id.setSize(la_id.getPreferredSize().getSize());
 		bg.add(la_id);
 		
 		
-		tf_id.setLocation(140,250);
+		tf_id.setLocation(140,290);
 		tf_id.setSize(210,30);
 		bg.add(tf_id);
 		
@@ -85,22 +85,22 @@ public class Login extends JFrame{
 		
 		JLabel la_ps=new JLabel("password");
 		la_ps.setFont(new Font("Serif",Font.BOLD,22));
-		la_ps.setLocation(41,300);
+		la_ps.setLocation(41,340);
 		la_ps.setSize(la_ps.getPreferredSize().getSize());
 		bg.add(la_ps);
 		
 		
-		tf_ps.setLocation(140,300);
+		tf_ps.setLocation(140,340);
 		tf_ps.setSize(210,30);
 		bg.add(tf_ps);
 		
 		JButton btn_join=new JButton("회원가입");
-		btn_join.setLocation(150,350);
+		btn_join.setLocation(150,390);
 		btn_join.setSize(90,30);
 		bg.add(btn_join);
 		
 		JButton btn_login=new JButton("로그인");
-		btn_login.setLocation(260,350);
+		btn_login.setLocation(260,390);
 		btn_login.setSize(80,30);
 		
 		ma m1=new ma();
