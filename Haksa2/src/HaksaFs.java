@@ -14,7 +14,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 public class HaksaFs extends JPanel {
-	
+	JMenuBar mb=new JMenuBar();
 //	ImageIcon img;
 //	public void paintComponent(Graphics g) {
 //		Dimension d = getSize();
@@ -34,7 +34,7 @@ public class HaksaFs extends JPanel {
 //		Container c=getContentPane();
 //		c.setLayout(new BorderLayout());
 		
-		JMenuBar mb=new JMenuBar();
+		
 		JMenu Menu1 = new JMenu("메뉴");
 		JMenu Menu2 = new JMenu("학사정보");
 		JMenuItem itemLoad = new JMenuItem("로그아웃");
@@ -106,6 +106,7 @@ public class HaksaFs extends JPanel {
 				Login.bg.add(new Login().bg);
 				Login.bg.setLayout(null);
 				Login.fr.setPreferredSize(new Dimension(500,500));
+				mb.setVisible(false);
 				//Login.fr.pack();
 				//Login.fr.setLayout(new BorderLayout());
 				break;

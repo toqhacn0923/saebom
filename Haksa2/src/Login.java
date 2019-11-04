@@ -62,7 +62,6 @@ public class Login extends JFrame{
 		la_img.setLocation(140, 30);
 		la_img.setSize(200,200);
 		bg.add(la_img);
-		//main=new JPanel(null);
 		
 		JLabel la_main=new JLabel("학사관리시스템");
 		la_main.setFont(new Font("Serif",Font.BOLD,25));

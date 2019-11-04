@@ -18,6 +18,7 @@ public class Haksa extends JPanel{
 	ResultSet rs = null;
 //	static JPanel panel = null;
 	ImageIcon imgIcon;
+	JMenuBar mb = new JMenuBar();
 	public Haksa() {
 //		db = new DBManager();
 //		db.Connection();
@@ -28,7 +29,7 @@ public class Haksa extends JPanel{
 //		Container c = Login.fr.getContentPane();
 //		imgIcon=new ImageIcon("images/bg2.jpg");
 //		panel = new JPanel();
-		JMenuBar mb = new JMenuBar();
+		
 		
 		JMenu Menu1 = new JMenu("메뉴");
 		JMenu Menu2 = new JMenu("학생관리");
@@ -107,6 +108,7 @@ public class Haksa extends JPanel{
 				Login.bg.add(new Login().bg);
 				Login.bg.setLayout(null);
 				Login.fr.setPreferredSize(new Dimension(500,500));
+				mb.setVisible(false);
 				//Login.fr.pack();
 				//Login.fr.setLayout(new BorderLayout());
 				break;
@@ -126,9 +128,9 @@ public class Haksa extends JPanel{
 				Login.bg.removeAll();
 				Login.bg.revalidate();
 				Login.bg.repaint();
-				Login.bg.add(new BookGraph2());
+				Login.bg.add(new BookList());
 				Login.bg.setLayout(null);
-				Login.fr.setPreferredSize(new Dimension(620,500));
+				Login.fr.setPreferredSize(new Dimension(500,450));
 				Login.fr.pack();
 				//Login.fr.setLayout(new BorderLayout());
 				break;
